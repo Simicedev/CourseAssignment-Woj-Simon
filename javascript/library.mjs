@@ -4,7 +4,7 @@ export function htmlRenderTooDom(template) {
   return parsedDocument.body.firstChild;
 }
 
-export function clearNode(el) {
+export function refreshElement(el) {
   el.innerHTML = "";
 }
 

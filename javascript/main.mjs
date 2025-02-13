@@ -1,6 +1,6 @@
 import {
   htmlRenderTooDom,
-  clearNode,
+  refreshElement,
   apiUrl,
   ERROR_PRINT,
   currency,
