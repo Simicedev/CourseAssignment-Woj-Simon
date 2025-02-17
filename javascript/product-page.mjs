@@ -35,7 +35,7 @@ async function fetchProducts() {
 
           return `
                         <div class="product">
-                            <img src="${product.image.url}" alt="${product.image.alt}">
+                            <a href ='single-product-page.html'><img src="${product.image.url}" alt="${product.image.alt}"></a>
                             <h2>${product.title}</h2>
                             <p>${product.description}</p>
                             <p><strong>Sizes:</strong> ${sizesText}</p>
