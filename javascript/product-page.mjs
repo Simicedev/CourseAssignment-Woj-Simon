@@ -80,5 +80,19 @@ if (sortDropdown) {
 	});
 }
 
+const cartTab = document.getElementById("cartTab");
+const basketWrapper = document.querySelector(".basket-wrapper"); 
+const closeButton = document.getElementById("close");
+
+
+function toggleCart() {
+  cartTab.classList.toggle("active"); 
+}
+
+
+basketWrapper.addEventListener("click", toggleCart);
+
+closeButton.addEventListener("click", toggleCart);
+
 
 fetchProducts('asc');
