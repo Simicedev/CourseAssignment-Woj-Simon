@@ -1,36 +1,39 @@
-import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
+import { apiUrl, currency, ERROR_PRINT } from "./library.mjs";
 
 async function fetchProducts() {
-	try {
-		const container = document.getElementById('product-container');
-		container.innerHTML = '<p class="loading">Loading products...</p>';
+  try {
+    const container = document.getElementById("product-container");
+    container.innerHTML = '<p class="loading">Loading products...</p>';
 
-		const response = await fetch(apiUrl);
-		if (!response.ok) {
-			throw new Error(`HTTP error! Status: ${response.status}`);
-		}
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-		const result = await response.json();
-		const products = result?.data;
+    const result = await response.json();
+    const products = result?.data;
 
-		if (!Array.isArray(products) || products.length === 0) {
-			throw new Error('No products found');
-		}
+    if (!Array.isArray(products) || products.length === 0) {
+      throw new Error("No products found");
+    }
 
-		const productsHTML = products
-			.map(product => {
-				if (
-					product?.image?.url &&
-					product?.image?.alt &&
-					product?.title &&
-					product?.description &&
-					Array.isArray(product?.sizes) &&
-					product?.price &&
-					product?.gender
-				) {
-					const sizesText = product.sizes.length > 0 ? product.sizes.join(', ') : 'Not available';
+    const productsHTML = products
+      .map((product) => {
+        if (
+          product?.image?.url &&
+          product?.image?.alt &&
+          product?.title &&
+          product?.description &&
+          Array.isArray(product?.sizes) &&
+          product?.price &&
+          product?.gender
+        ) {
+          const sizesText =
+            product.sizes.length > 0
+              ? product.sizes.join(", ")
+              : "Not available";
 
-					return `
+          return `
                         <div class="product">
                             <img src="${product.image.url}" alt="${product.image.alt}">
                             <h2>${product.title}</h2>
@@ -41,20 +44,20 @@ async function fetchProducts() {
 							<button>Add to cart</button>
                         </div>
                     `;
-				} else {
-					console.warn('Incomplete product data', product);
-					return '';
-				}
-			})
-			.join('');
+        } else {
+          console.warn("Incomplete product data", product);
+          return "";
+        }
+      })
+      .join("");
 
-		container.innerHTML = productsHTML || '<p>No valid products found.</p>';
-	} catch (error) {
-		console.error('Error fetching products:', error);
-		document.getElementById(
-			'product-container'
-		).innerHTML = `<p class="error-message">${ERROR_PRINT}. Please try again later.</p>`;
-	}
+    container.innerHTML = productsHTML || "<p>No valid products found.</p>";
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    document.getElementById(
+      "product-container"
+    ).innerHTML = `<p class="error-message">${ERROR_PRINT}. Please try again later.</p>`;
+  }
 }
 
 fetchProducts();
