@@ -1,6 +1,6 @@
 import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
 
-async function fetchMenProducts() {
+async function fetchMenProducts(sortOrder = 'asc') {
 	try {
 		const container = document.getElementById('product-container');
 		container.innerHTML = '<p class="loading">Loading products...</p>';
@@ -17,7 +17,18 @@ async function fetchMenProducts() {
 			throw new Error('No products found');
 		}
 
-		const menProductsHTML = products
+		const sortedProducts = products.sort((a, b) => {
+			const priceA = a?.price || 0;
+			const priceB = b?.price || 0;
+
+			if (sortOrder === 'asc') {
+				return priceA - priceB;
+			} else {
+				return priceB - priceA;
+			}
+		});
+
+		const menProductsHTML = sortedProducts
 			.filter(product => product.gender?.toLowerCase() === 'male')
 			.map(product => {
 				if (
@@ -60,4 +71,12 @@ async function fetchMenProducts() {
 document.getElementById('men-products-nav').addEventListener('click', event => {
 	event.preventDefault();
 	fetchMenProducts();
+
+	const sortDropdown = document.getElementById('sort-options');
+	if (sortDropdown) {
+		sortDropdown.addEventListener('change', event => {
+			const sortOrder = event.target.value;
+			fetchMenProducts(sortOrder);
+		});
+	}
 });
