@@ -1,4 +1,4 @@
-export function htmlRenderTooDom(template) {
+export function htmlRenderToDom(template) {
   const parser = new DOMParser();
   const parsedDocument = parser.parseFromString(template, "text/html");
   return parsedDocument.body.firstChild;
