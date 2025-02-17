@@ -1,11 +1,11 @@
 import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
 
-async function fetchWomenProducts() {
+async function fetchWomenProducts(sortOrder = 'asc') {
 	try {
 		const container = document.getElementById('product-container');
 		container.innerHTML = '<p class="loading">Loading products...</p>';
 
-		const response = await fetch('https://v2.api.noroff.dev/rainy-days');
+		const response = await fetch(apiUrl);
 		if (!response.ok) {
 			throw new Error(`HTTP error! Status: ${response.status}`);
 		}
@@ -17,8 +17,20 @@ async function fetchWomenProducts() {
 			throw new Error('No products found');
 		}
 
-		const womenProductsHTML = products
+		const womenProducts = products
 			.filter(product => product.gender?.toLowerCase() === 'female')
+			.sort((a, b) => {
+				const priceA = a?.price || 0;
+				const priceB = b?.price || 0;
+
+				if (sortOrder === 'asc') {
+					return priceA - priceB;
+				} else {
+					return priceB - priceA;
+				}
+			});
+
+		const womenProductsHTML = womenProducts
 			.map(product => {
 				if (
 					product?.image?.url &&
@@ -36,8 +48,7 @@ async function fetchWomenProducts() {
                             <h2>${product.title}</h2>
                             <p>${product.description}</p>
                             <p><strong>Sizes:</strong> ${sizesText}</p>
-                            <p><strong>Price:</strong> ${product.price}
-                ${currency}</p>
+                            <p><strong>Price:</strong> ${product.price} ${currency}</p>
                             <p><strong>Gender:</strong> ${product.gender}</p>
                             <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to cart</button>
                         </div>
@@ -52,14 +63,21 @@ async function fetchWomenProducts() {
 		container.innerHTML = womenProductsHTML || '<p>No valid women’s products found.</p>';
 	} catch (error) {
 		console.error('Error fetching products:', error);
-		document.getElementById('product-container').innerHTML =
-			'<p class="error-message">Failed to load products. Please try again later.</p>';
+		document.getElementById(
+			'product-container'
+		).innerHTML = `<p class="error-message">${ERROR_PRINT}. Please try again later.</p>`;
 	}
 }
 
-fetchWomenProducts();
+document.getElementById('women-products-nav').addEventListener('click', event => {
+	event.preventDefault();
+	fetchWomenProducts();
 
-const womenNav = document.getElementById('women-products-nav');
-if (womenNav) {
-	womenNav.addEventListener('click', fetchWomenProducts);
-}
+	const sortDropdown = document.getElementById('sort-options');
+	if (sortDropdown) {
+		sortDropdown.addEventListener('change', event => {
+			const sortOrder = event.target.value;
+			fetchWomenProducts(sortOrder);
+		});
+	}
+});

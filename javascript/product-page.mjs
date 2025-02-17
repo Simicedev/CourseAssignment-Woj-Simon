@@ -1,6 +1,7 @@
 import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
 
-async function fetchProducts() {
+async function fetchProducts(sortOrder = 'asc') {
+	
 	try {
 		const container = document.getElementById('product-container');
 		container.innerHTML = '<p class="loading">Loading products...</p>';
@@ -17,7 +18,20 @@ async function fetchProducts() {
 			throw new Error('No products found');
 		}
 
-		const productsHTML = products
+		
+		const sortedProducts = products.sort((a, b) => {
+			const priceA = a?.price || 0;
+			const priceB = b?.price || 0;
+
+			if (sortOrder === 'asc') {
+				return priceA - priceB; 
+			} else {
+				return priceB - priceA; 
+			}
+		});
+
+		
+		const productsHTML = sortedProducts
 			.map(product => {
 				if (
 					product?.image?.url &&
@@ -26,7 +40,7 @@ async function fetchProducts() {
 					product?.description &&
 					Array.isArray(product?.sizes) &&
 					product?.price &&
-					product?.gender 
+					product?.gender
 				) {
 					const sizesText = product.sizes.length > 0 ? product.sizes.join(', ') : 'Not available';
 
@@ -57,4 +71,14 @@ async function fetchProducts() {
 	}
 }
 
-fetchProducts();
+
+const sortDropdown = document.getElementById('sort-options');
+if (sortDropdown) {
+	sortDropdown.addEventListener('change', event => {
+		const sortOrder = event.target.value; 
+		fetchProducts(sortOrder); 
+	});
+}
+
+
+fetchProducts('asc');
