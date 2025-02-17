@@ -39,6 +39,7 @@ async function fetchWomenProducts() {
                             <p><strong>Price:</strong> ${product.price}
                 ${currency}</p>
                             <p><strong>Gender:</strong> ${product.gender}</p>
+                            <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to cart</button>
                         </div>
                     `;
 				} else {

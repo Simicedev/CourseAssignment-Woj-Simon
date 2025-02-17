@@ -26,21 +26,21 @@ async function fetchProducts() {
 					product?.description &&
 					Array.isArray(product?.sizes) &&
 					product?.price &&
-					product?.gender
+					product?.gender 
 				) {
 					const sizesText = product.sizes.length > 0 ? product.sizes.join(', ') : 'Not available';
 
 					return `
-                        <div class="product">
-                            <img src="${product.image.url}" alt="${product.image.alt}">
-                            <h2>${product.title}</h2>
-                            <p>${product.description}</p>
-                            <p><strong>Sizes:</strong> ${sizesText}</p>
-                            <p><strong>Price:</strong> ${product.price} ${currency}</p>
-                            <p><strong>Gender:</strong> ${product.gender}</p>
-							<button>Add to cart</button>
-                        </div>
-                    `;
+            <div class="product">
+              <img src="${product.image.url}" alt="${product.image.alt}">
+              <h2>${product.title}</h2>
+              <p>${product.description}</p>
+              <p><strong>Sizes:</strong> ${sizesText}</p>
+              <p><strong>Price:</strong> ${product.price} ${currency}</p>
+              <p><strong>Gender:</strong> ${product.gender}</p>
+              <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to cart</button>
+            </div>
+          `;
 				} else {
 					console.warn('Incomplete product data', product);
 					return '';

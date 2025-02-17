@@ -38,6 +38,7 @@ async function fetchMenProducts() {
                             <p><strong>Sizes:</strong> ${sizesText}</p>
                             <p><strong>Price:</strong> ${product.price} ${currency}</p>
                             <p><strong>Gender:</strong> ${product.gender}</p>
+                            <button class="add-to-cart" data-product='${JSON.stringify(product)}'>Add to cart</button>
                         </div>
                     `;
 				} else {
@@ -56,8 +57,7 @@ async function fetchMenProducts() {
 	}
 }
 
-
 document.getElementById('men-products-nav').addEventListener('click', event => {
-	event.preventDefault(); 
+	event.preventDefault();
 	fetchMenProducts();
 });
