@@ -1,50 +1,46 @@
-import {
-  apiUrl,
-  currency,
-  ERROR_PRINT,
-  refreshElement,
-  htmlRenderToDom,
-} from "./library.mjs";
+import { apiUrl, currency, ERROR_PRINT, refreshElement, htmlRenderToDom } from './library.mjs';
+
 let jacketProducts = [];
-const productContainer = document.getElementById("productContainer");
+const productContainer = document.getElementById('productContainer');
+
 if (!productContainer) {
-  console.error("JS is down");
+	console.error('JS is down');
 } else {
-  getProducts();
+	getProducts();
 }
 
 async function getProducts() {
-  refreshElement(productContainer);
-  // createLoadingSkeleton();
+	refreshElement(productDetails);
+	
 
-  try {
-    const response = await fetch(apiUrl);
-    const { data } = await response.json();
-    jacketProducts = data;
+	try {
+		const response = await fetch(apiUrl);
+		const { data } = await response.json();
+		jacketProducts = data;
 
-    generateProducts(jacketProducts);
-  } catch (error) {
-    console.error(ERROR_PRINT, error?.message);
-  }
+		generateProducts(jacketProducts);
+	} catch (error) {
+		console.error(ERROR_PRINT, error?.message);
+	}
 }
 
 function productTemplate({
-  id,
-  title = "Unknown Item",
-  imgUrl,
-  imgAl,
-  price = 0,
-  description = "Missing description",
-  index,
+	id,
+	title = 'Unknown Item',
+	imgUrl,
+	imgAl,
+	price = 0,
+	description = 'Missing description',
+	index,
 }) {
-  return `
+	return `
     <article class="product-details animate__animated animate__fadeInUp animate__delay-${index}s">
       <div class="product-image">
-        <a href=""productInfo.html""><img src="${imgUrl}" alt="${imgAl}" /></a>
+        <a href="productInfo.html"><img src="${imgUrl}" alt="${imgAl}" /></a>
       </div>
 
       <div class="product-info">
-        <a href=""productInfo.html""><h1 class="product-title">${title}</h1></a>
+        <a href="productInfo.html"><h1 class="product-title">${title}</h1></a>
         <div class="product-rating">
           <span>&#9733;</span>
           <span>&#9733;</span>
@@ -64,42 +60,43 @@ function productTemplate({
     </article>
  `;
 }
+
 function generateProducts(list = jacketProducts) {
-  refreshElement(productContainer);
+	refreshElement(productDetails);
 
-  if (list.length === 0) {
-    console.error("No products available");
-    return;
-  }
+	if (list.length === 0) {
+		console.error('No products available');
+		return;
+	}
 
-  // Select the first product or specify an ID
-  const product = list[0];
+	list.forEach((product, index) => {
+		const template = productTemplate({
+			id: product.id,
+			title: product.title,
+			imgUrl: product.image.url,
+			imgAl: product.image.alt,
+			price: product.price,
+			description: product.description,
+			index: index + 1,
+		});
 
-  const template = productTemplate({
-    id: product.id,
-    title: product.title,
-    imgUrl: product.image.url,
-    imgAl: product.image.alt,
-    price: product.price,
-    description: product.description,
-  });
-
-  const newEl = htmlRenderToDom(template);
-  productContainer.append(newEl);
+		const newEl = htmlRenderToDom(template);
+		productDetails.append(newEl);
+	});
 }
 
-// Get elements
-const cartTab = document.getElementById("cartTab");
-const basketWrapper = document.querySelector(".basket-wrapper"); // New toggle button
-const closeButton = document.getElementById("close");
 
-// Function to toggle the cart
+const cartTab = document.getElementById('cartTab');
+const basketWrapper = document.querySelector('.basket-wrapper'); 
+const closeButton = document.getElementById('close');
+
+
 function toggleCart() {
-    cartTab.classList.toggle("active"); // Adds/removes 'active' class
+	cartTab.classList.toggle('active'); 
 }
 
-// Open cart when clicking the basket-wrapper
-basketWrapper.addEventListener("click", toggleCart);
 
-// Close cart when clicking the close button
-closeButton.addEventListener("click", toggleCart);
+basketWrapper.addEventListener('click', toggleCart);
+
+
+closeButton.addEventListener('click', toggleCart);
