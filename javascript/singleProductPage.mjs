@@ -1,7 +1,14 @@
-import { apiUrl, currency, ERROR_PRINT, refreshElement, htmlRenderToDom } from './library.mjs';
+import {
+  apiUrl,
+  currency,
+  ERROR_PRINT,
+  refreshElement,
+  htmlRenderToDom,
+} from "./library.mjs";
 
 let jacketProducts = [];
-const productContainer = document.getElementById('productContainer');
+const productContainer = document.getElementById("productContainer");
+
 
 if (!productContainer) {
 	console.error('JS is down');
@@ -36,11 +43,11 @@ function productTemplate({
 	return `
     <article class="product-details animate__animated animate__fadeInUp animate__delay-${index}s">
       <div class="product-image">
-        <a href="productInfo.html"><img src="${imgUrl}" alt="${imgAl}" /></a>
+        <img src="${imgUrl}" alt="${imgAl}" />
       </div>
 
       <div class="product-info">
-        <a href="productInfo.html"><h1 class="product-title">${title}</h1></a>
+        <h1 class="product-title">${title}</h1>
         <div class="product-rating">
           <span>&#9733;</span>
           <span>&#9733;</span>
@@ -86,17 +93,3 @@ function generateProducts(list = jacketProducts) {
 }
 
 
-const cartTab = document.getElementById('cartTab');
-const basketWrapper = document.querySelector('.basket-wrapper'); 
-const closeButton = document.getElementById('close');
-
-
-function toggleCart() {
-	cartTab.classList.toggle('active'); 
-}
-
-
-basketWrapper.addEventListener('click', toggleCart);
-
-
-closeButton.addEventListener('click', toggleCart);

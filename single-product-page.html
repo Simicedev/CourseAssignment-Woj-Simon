@@ -71,10 +71,21 @@
     <section>
         <div id="cartTab">
             <h1 id="cartTitle">Shopping cart</h1>
-            <div id="listCart"></div>
+            <div id="listCart">
+              <div class="cart-item">
+                <div class="cart-image" ><img src="https://static.noroff.dev/api/rainy-days/9-thunderbolt-jacket.jpg" alt=""></div>
+              </div>
+              <div class="cart-name">NAME</div>
+              <div class="cart-totalPrice">139.99 kr</div>
+              <div class="cart-quantity">
+                <span class="minus">-</span>
+                <span>1</span>
+                <span class="plus">+</span>
+              </div>
+            </div>
             <div id="btn">
                 <button id="close">CLOSE</button>
-                <button id="checkOut">CHECK OUT</button>
+                <button id="checkOut"> <a href="checkout-page.html"> CHECKOUT</a></button>
             </div>
         </div>
     </section>
@@ -110,5 +121,6 @@
       </div>
     </footer>
     <script type="module" src="javascript/singleProductPage.mjs"></script>
+    <script type="module" src="javascript/cart.mjs"></script>
   </body>
 </html>

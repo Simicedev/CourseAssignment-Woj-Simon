@@ -324,7 +324,10 @@ a:link {
 .product-image:hover img {
 	transform: scale(1.05);
 }
-
+.product-info{
+	display: flex;
+	flex-direction: column;
+}
 /* Product Title */
 .product-title {
 	font-size: 1.2rem;
@@ -439,6 +442,89 @@ a:link {
 	overflow-y: auto; /* Allows scrolling if content overflows */
 }
 
+#listCart {
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 65vh; /* Prevent cart from taking full screen height */
+    padding-right: 5px;
+}
+
+/* Scrollbar Styling */
+#listCart::-webkit-scrollbar {
+    width: 6px;
+}
+
+#listCart::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+#listCart::-webkit-scrollbar-track {
+    background: #f4f4f4;
+}
+
+/* Cart Item */
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    gap: 10px;
+	
+}
+
+/* Cart Image */
+.cart-image img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Product Name */
+.cart-name {
+    font-size: 1rem;
+    font-weight: bold;
+    flex-grow: 1;
+    white-space: nowrap; /* Prevents breaking */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Total Price */
+.cart-totalPrice {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Cart Quantity */
+.cart-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f4f4f4;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* Minus and Plus Buttons */
+.cart-quantity .minus,
+.cart-quantity .plus {
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: #ddd;
+    padding: 5px 10px;
+    border-radius: 3px;
+    user-select: none;
+}
+
+.cart-quantity .minus:hover,
+.cart-quantity .plus:hover {
+    background: #bbb;
+}
+
 /* Show the Cart when Active (Add this class with JS) */
 #cartTab.active {
 	right: 0; /* Slide it into view */
@@ -481,6 +567,7 @@ a:link {
 
 /* Close Button */
 #close {
+	text-decoration:none;
 	background: #ccc;
 	color: black;
 }
@@ -491,6 +578,7 @@ a:link {
 
 /* Checkout Button */
 #checkOut {
+	text-decoration:none;
 	background: #bf7c41;
 	color: white;
 }
