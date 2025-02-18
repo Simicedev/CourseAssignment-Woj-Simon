@@ -1,21 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            
-        </header>
-        <main>
-            
-        </main>
-        <footer>
 
-        </footer>
+<head>
+    <title>Rainyday's</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Rainyday - Discover our premium collection of outdoor jackets designed for all weather conditions. Perfect for hiking, camping, and everyday wear.">
+    <meta name="keywords"
+        content="outdoor jackets, hiking jackets, waterproof jackets, camping gear, all-weather jackets, raincoats, outdoor clothing">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/4dc294ecf0.js" crossorigin="anonymous"></script>
+    <script type="module" defer src="javascript/product-page-men.mjs"></script>
+    <script type="module" defer src="javascript/product-page-women.mjs"></script>
+    <script type="module" defer src="javascript/product-page.mjs"></script>
+</head>
+
+<body>
+    <div class="hn">
+        <header>
+            <div class="burger" id="burger">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            
+            <div class="sab">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="input-search" type="text" placeholder="Search">
+                </div>
+                <div class="account-container">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="account">My account</div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="basket-wrapper">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="cart">Cart</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="input-search" type="text" placeholder="Search">
+            </div>
+        </div>
+
+
+
+        <nav>
+            <ul class="nav-bar" id="nav-bar">
+                <li id=""><a href="index.html">HOME</a></li>
+                <li><a href="">NEW PRODUCT</a></li>
+                <li id="women-products-nav"><a href="#">WOMEN</a></li>
+                <li id="men-products-nav"><a href="#">MEN</a></li>
+                <li><a href="">EQUIPMENT</a></li>
+                <li><a href="">ACCESSORIES</a></li>
+            </ul>
+        </nav>
+
+    </div>
+    <main>
+        <div class="container confirmation-container">
+            <h2>Order Confirmation</h2>
+            <p>Thank you for your order!</p>
+
+            <div class="order-details">
+                <h3>Your Order Details</h3>
+                <p><strong>Full Name:</strong> <span id="order-name"></span></p>
+                <p><strong>Email:</strong> <span id="order-email"></span></p>
+                <p><strong>Shipping Address:</strong> <span id="order-address"></span></p>
+                <p><strong>Payment Method:</strong> <span id="order-payment"></span></p>
+            </div>
+
+            <div class="order-summary">
+                <p><strong>Total: </strong> <span id="order-total"></span></p>
+            </div>
+        </div>
+    </main>
+    <a href="index.html" class="btn">Back to Home</a>
+
+    <footer class="footer-container">
+        <div class="footer-wrapper">
+            <h3 class="footer-h">COMPANY</h3>
+            <ul class="footer">
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Our services</a></li>
+                <li><a href="#">Privacy policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-wrapper">
+            <h3 class="footer-h">Help and support</h3>
+            <ul class="footer">
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="">Payment</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-wrapper">
+            <h3 class="footer-h">Follow us</h3>
+            <ul class="footer">
+                <li><a href="">Facebook</a></li>
+                <li><a href="">Instagram</a></li>
+                <li><a href="">X</a></li>
+            </ul>
+        </div>
+    </footer>
     <script type="module" src="javascript/main.mjs"></script>
-    </body>
+</body>
+
 </html>

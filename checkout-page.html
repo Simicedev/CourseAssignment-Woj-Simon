@@ -1,21 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            
-        </header>
-        <main>
-            
-        </main>
-        <footer>
 
-        </footer>
-    <script type="module" src="javascript/main.mjs"></script>
-    </body>
+<head>
+    <title>Rainyday's</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Rainyday - Discover our premium collection of outdoor jackets designed for all weather conditions. Perfect for hiking, camping, and everyday wear.">
+    <meta name="keywords"
+        content="outdoor jackets, hiking jackets, waterproof jackets, camping gear, all-weather jackets, raincoats, outdoor clothing">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/4dc294ecf0.js" crossorigin="anonymous"></script>
+    <script type="module" defer src="javascript/product-page-men.mjs"></script>
+    <script type="module" defer src="javascript/product-page-women.mjs"></script>
+    <script type="module" defer src="javascript/product-page.mjs"></script>
+</head>
+
+<body>
+    <div class="hn">
+        <header>
+            <div class="burger" id="burger">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            
+            <div class="sab">
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input class="input-search" type="text" placeholder="Search">
+                </div>
+                <div class="account-container">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <div class="account">My account</div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="basket-wrapper">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <div class="cart">Cart</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="search-wrapper">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input class="input-search" type="text" placeholder="Search">
+            </div>
+        </div>
+
+
+
+        <nav>
+            <ul class="nav-bar" id="nav-bar">
+                <li id=""><a href="index.html">HOME</a></li>
+                <li><a href="">NEW PRODUCT</a></li>
+                <li id="women-products-nav"><a href="#">WOMEN</a></li>
+                <li id="men-products-nav"><a href="#">MEN</a></li>
+                <li><a href="">EQUIPMENT</a></li>
+                <li><a href="">ACCESSORIES</a></li>
+            </ul>
+        </nav>
+
+    </div>
+
+
+   <main>
+    <div class="cart-container">
+        <h2>Your Cart</h2>
+        <div id="cart-items"></div>
+        <p><strong>Total:</strong> <span id="cart-total">$0.00</span></p>
+
+        <h2>Checkout</h2>
+        <form id="checkout-form" class="checkout-form" onsubmit="submitOrder(event)">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="input-field" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" class="input-field" required>
+
+            <label for="address">Shipping Address</label>
+            <input type="text" id="address" class="input-field" required>
+
+            <label for="payment">Payment Method</label>
+            <select id="payment" class="input-field" required>
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+            </select>
+
+            <button type="submit" class="btn">Place Order</button>
+        </form>
+    </div>
+</main>
+
+
+    <section>
+        <div id="cartTab">
+            <h1 id="cartTitle">Shopping cart</h1>
+            <div id="listCart"></div>
+            <div id="btn">
+                <button id="close">CLOSE</button>
+                <button id="checkOut"> <a href="checkout-page.html"> CHECK OUT</a></button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-container">
+        <div class="footer-wrapper">
+            <h3 class="footer-h">COMPANY</h3>
+            <ul class="footer">
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Our services</a></li>
+                <li><a href="#">Privacy policy</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-wrapper">
+            <h3 class="footer-h">Help and support</h3>
+            <ul class="footer">
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Shipping</a></li>
+                <li><a href="#">Returns</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="">Payment</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-wrapper">
+            <h3 class="footer-h">Follow us</h3>
+            <ul class="footer">
+                <li><a href="">Facebook</a></li>
+                <li><a href="">Instagram</a></li>
+                <li><a href="">X</a></li>
+            </ul>
+        </div>
+    </footer>
+<script>
+    function submitOrder(event) {
+        event.preventDefault();
+
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const address = document.getElementById("address").value;
+        const payment = document.getElementById("payment").value;
+
+
+        localStorage.setItem("orderName", name);
+        localStorage.setItem("orderEmail", email);
+        localStorage.setItem("orderAddress", address);
+        localStorage.setItem("orderPayment", payment);
+
+        
+        window.location.href = "confirmation-page.html";
+    }
+</script>
+</body>
+
 </html>
