@@ -1,16 +1,17 @@
-import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
+import { apiUrl, currency, ERROR_PRINT } from "./library.mjs";
 
+async function fetchProducts(sortOrder = "asc") {
+  try {
+    const container = document.getElementById("product-container");
+    container.innerHTML = '<p class="loading">Loading products...</p>';
 
-async function fetchProducts(sortOrder = 'asc') {
-	try {
-		const container = document.getElementById('product-container');
-		container.innerHTML = '<p class="loading">Loading products...</p>';
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-		const response = await fetch(apiUrl);
-		if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-		const result = await response.json();
-		const products = result?.data;
+    const result = await response.json();
+    const products = result?.data;
 
     if (!Array.isArray(products) || products.length === 0) {
       throw new Error("No products found");
@@ -78,18 +79,16 @@ if (sortDropdown) {
   });
 }
 
-const cartTab = document.getElementById('cartTab');
-const basketWrapper = document.querySelector('.basket-wrapper');
-const closeButton = document.getElementById('close');
+const cartTab = document.getElementById("cartTab");
+const basketWrapper = document.querySelector(".basket-wrapper");
+const closeButton = document.getElementById("close");
 
 function toggleCart() {
-	cartTab.classList.toggle('active');
+  cartTab.classList.toggle("active");
 }
 
-basketWrapper?.addEventListener('click', toggleCart);
-closeButton?.addEventListener('click', toggleCart);
+basketWrapper.addEventListener("click", toggleCart);
 
-document.addEventListener('DOMContentLoaded', () => {
-	updateCartDisplay();
-	fetchProducts('asc');
-});
+closeButton.addEventListener("click", toggleCart);
+
+fetchProducts("asc");
