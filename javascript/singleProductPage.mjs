@@ -5,8 +5,11 @@ import {
   refreshElement,
   htmlRenderToDom,
 } from "./library.mjs";
+
 let jacketProducts = [];
 const productContainer = document.getElementById("productContainer");
+
+
 if (!productContainer) {
   console.error("JS is down");
 } else {
@@ -40,11 +43,11 @@ function productTemplate({
   return `
     <article class="product-details animate__animated animate__fadeInUp animate__delay-${index}s">
       <div class="product-image">
-        <a href=""productInfo.html""><img src="${imgUrl}" alt="${imgAl}" /></a>
+        <img src="${imgUrl}" alt="${imgAl}" />
       </div>
 
       <div class="product-info">
-        <a href=""productInfo.html""><h1 class="product-title">${title}</h1></a>
+        <h1 class="product-title">${title}</h1>
         <div class="product-rating">
           <span>&#9733;</span>
           <span>&#9733;</span>
@@ -88,18 +91,4 @@ function generateProducts(list = jacketProducts) {
   productContainer.append(newEl);
 }
 
-// Get elements
-const cartTab = document.getElementById("cartTab");
-const basketWrapper = document.querySelector(".basket-wrapper"); // New toggle button
-const closeButton = document.getElementById("close");
 
-// Function to toggle the cart
-function toggleCart() {
-    cartTab.classList.toggle("active"); // Adds/removes 'active' class
-}
-
-// Open cart when clicking the basket-wrapper
-basketWrapper.addEventListener("click", toggleCart);
-
-// Close cart when clicking the close button
-closeButton.addEventListener("click", toggleCart);

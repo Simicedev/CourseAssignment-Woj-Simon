@@ -52,7 +52,7 @@ async function fetchProducts(sortOrder = "asc") {
                             <p><strong>Sizes:</strong> ${sizesText}</p>
                             <p><strong>Price:</strong> ${product.price} ${currency}</p>
                             <p><strong>Gender:</strong> ${product.gender}</p>
-							<button>Add to cart</button>
+							<button class='add-to-cart'>Add to cart</button>
                         </div>
                     `;
         } else {
