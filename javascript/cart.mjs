@@ -26,7 +26,7 @@ function setup(){
     }
 }
 function toggleCart() {
-  cartTab.classList.toggle("active"); // Adds/removes 'active' class
+  cartTab.classList.toggle("active"); 
 }
  basketWrapper.addEventListener("click", toggleCart);
  closeButton.addEventListener("click", toggleCart);

@@ -90,5 +90,25 @@ function toggleCart() {
 basketWrapper.addEventListener("click", toggleCart);
 
 closeButton.addEventListener("click", toggleCart);
+document.addEventListener('DOMContentLoaded', () => {
+	const cartTab = document.getElementById('cartTab');
+	const basketWrapper = document.querySelector('.basket-wrapper');
+	const closeButton = document.getElementById('close');
 
+	
+	if (!cartTab || !basketWrapper || !closeButton) {
+		
+		return;
+	}
+
+	
+
+	function toggleCart() {
+		cartTab.classList.toggle('active');
+		console.log('🛒 Cart toggled:', cartTab.classList.contains('active') ? 'Opened' : 'Closed');
+	}
+
+	basketWrapper.addEventListener('click', toggleCart);
+	closeButton.addEventListener('click', toggleCart);
+});
 fetchProducts("asc");
