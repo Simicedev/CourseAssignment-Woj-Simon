@@ -73,7 +73,7 @@ function generateProducts(list = jacketProducts) {
   }
 
   // Select the first product or specify an ID
-  const product = list[0]; // Change to `list.find(p => p.id === "your-product-id")` to display a specific product
+  const product = list[0];
 
   const template = productTemplate({
     id: product.id,
