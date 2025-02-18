@@ -40,7 +40,7 @@
           </div>
           <div class="basket-wrapper">
             <i class="fa-solid fa-basket-shopping"></i>
-            <div class="cart">Cart</div>
+            <div id="cart">Cart</div>
           </div>
         </div>
       </header>
@@ -49,25 +49,6 @@
         <div class="search-container">
           <i class="fa-solid fa-magnifying-glass"></i>
           <input class="input-search" type="text" placeholder="Search" />
-        </div>
-      </div>
-
-      <div class="basket-container-mobile" id="basket-toggle">
-        <i class="fa-solid fa-basket-shopping"></i>
-      </div>
-
-      <div class="cart-details" id="cart-details">
-        <h3 class="cart-details-h">ITEM HAS BEEN ADDED TO THE CART</h3>
-        <div class="cart-items" id="cart-items"></div>
-
-        <p class="cart-total">Total: <span id="cart-total-price">0</span> kr</p>
-        <div class="checkout-btn">
-          <a href="index.html"
-            ><button class="checkout-btn-c">CONTINUE SHOPPING</button></a
-          >
-          <a href="cart.html"
-            ><button class="checkout-btn-g">GO TO CART</button></a
-          >
         </div>
       </div>
 
@@ -84,6 +65,18 @@
     </div>
     <section>
         <div id="productContainer"></div>
+        
+        </div>
+    </section>
+    <section>
+        <div id="cartTab">
+            <h1 id="cartTitle">Shopping cart</h1>
+            <div id="listCart"></div>
+            <div id="btn">
+                <button id="close">CLOSE</button>
+                <button id="checkOut">CHECK OUT</button>
+            </div>
+        </div>
     </section>
     <footer class="footer-container">
       <div class="footer-wrapper">

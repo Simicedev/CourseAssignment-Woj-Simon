@@ -87,4 +87,22 @@ if (sortDropdown) {
 	});
 }
 
+<<<<<<< HEAD
+=======
+const cartTab = document.getElementById("cartTab");
+const basketWrapper = document.querySelector(".basket-wrapper"); 
+const closeButton = document.getElementById("close");
+
+
+function toggleCart() {
+  cartTab.classList.toggle("active"); 
+}
+
+
+basketWrapper.addEventListener("click", toggleCart);
+
+closeButton.addEventListener("click", toggleCart);
+
+
+>>>>>>> f9cf7ec09740e41ee242167b0deec4ae0fc5ad91
 fetchProducts('asc');

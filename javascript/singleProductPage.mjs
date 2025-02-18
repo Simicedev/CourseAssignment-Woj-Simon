@@ -87,3 +87,19 @@ function generateProducts(list = jacketProducts) {
   const newEl = htmlRenderToDom(template);
   productContainer.append(newEl);
 }
+
+// Get elements
+const cartTab = document.getElementById("cartTab");
+const basketWrapper = document.querySelector(".basket-wrapper"); // New toggle button
+const closeButton = document.getElementById("close");
+
+// Function to toggle the cart
+function toggleCart() {
+    cartTab.classList.toggle("active"); // Adds/removes 'active' class
+}
+
+// Open cart when clicking the basket-wrapper
+basketWrapper.addEventListener("click", toggleCart);
+
+// Close cart when clicking the close button
+closeButton.addEventListener("click", toggleCart);

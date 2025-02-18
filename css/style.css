@@ -438,6 +438,100 @@ h1 {
     font-size: 0.9rem;
   }
 }
+/* Cart Sidebar (Hidden by Default) */
+#cartTab {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden off-screen */
+    width: 400px; /* Sidebar width */
+    height: 100vh; /* Full height */
+    background: white;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 1000; /* Ensure it's above other content */
+    transition: right 0.4s ease-in-out; /* Smooth sliding animation */
+    overflow-y: auto; /* Allows scrolling if content overflows */
+}
+
+/* Show the Cart when Active (Add this class with JS) */
+#cartTab.active {
+    right: 0; /* Slide it into view */
+}
+
+/* Cart Title */
+#cartTitle {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Cart Item List */
+#listCart {
+    flex: 1; /* Takes available space for items */
+    overflow-y: auto; /* Scroll if cart content is long */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* Button Container */
+#btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Cart Buttons */
+#btn button {
+    flex: 1;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Close Button */
+#close {
+    background: #ccc;
+    color: black;
+}
+
+#close:hover {
+    background: #999;
+}
+
+/* Checkout Button */
+#checkOut {
+    background: #bf7c41;
+    color: white;
+}
+
+#checkOut:hover {
+    background: #a46638;
+}
+
+/* Responsive Design (Smaller Screens) */
+@media (max-width: 600px) {
+    #cartTab {
+        width: 100%; /* Full-width on small screens */
+    }
+
+    #btn {
+        flex-direction: column; /* Stack buttons vertically */
+    }
+
+    #btn button {
+        margin-bottom: 10px;
+    }
+}
+
 
 .footer-container {
   background-color: black;
@@ -448,6 +542,8 @@ h1 {
   color: white;
   width: 100%;
 }
+
+
 
 /* Footer styling */
 .footer-wrapper {
