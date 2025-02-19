@@ -1,50 +1,27 @@
-import {
-  apiUrl,
-  currency,
-  ERROR_PRINT,
-  refreshElement,
-  htmlRenderToDom,
-} from "./library.mjs";
-let jacketProducts = [];
-const productContainer = document.getElementById("productContainer");
+import { currency, htmlRenderToDom, refreshElement } from './library.mjs';
+
+const productContainer = document.getElementById('product-container');
+
 if (!productContainer) {
-  console.error("JS is down");
+	console.error('Product container not found.');
 } else {
-  getProducts();
+	const productData = localStorage.getItem('selectedProduct');
+	if (!productData) {
+		productContainer.innerHTML = '<p>No product selected.</p>';
+	} else {
+		const product = JSON.parse(productData);
+		renderProduct(product);
+	}
 }
 
-async function getProducts() {
-  refreshElement(productContainer);
-  // createLoadingSkeleton();
-
-  try {
-    const response = await fetch(apiUrl);
-    const { data } = await response.json();
-    jacketProducts = data;
-
-    generateProducts(jacketProducts);
-  } catch (error) {
-    console.error(ERROR_PRINT, error?.message);
-  }
-}
-
-function productTemplate({
-  id,
-  title = "Unknown Item",
-  imgUrl,
-  imgAl,
-  price = 0,
-  description = "Missing description",
-  index,
-}) {
-  return `
-    <article class="product-details animate__animated animate__fadeInUp animate__delay-${index}s">
+function renderProduct(product) {
+	const template = `
+    <article class="product-details">
       <div class="product-image">
-        <a href=""productInfo.html""><img src="${imgUrl}" alt="${imgAl}" /></a>
+        <img src="${product.image.url}" alt="${product.image.alt}">
       </div>
-
       <div class="product-info">
-        <a href=""productInfo.html""><h1 class="product-title">${title}</h1></a>
+        <h1 class="product-title">${product.title}</h1>
         <div class="product-rating">
           <span>&#9733;</span>
           <span>&#9733;</span>
@@ -53,53 +30,36 @@ function productTemplate({
           <span>&#9734;</span>
           <span>(123 reviews)</span>
         </div>
-        <div class="product-price">${price} ${currency}</div>
+        <div class="product-price">${product.price} ${currency}</div>
         <div class="product-description">
-          <p>
-            ${description}
-          </p>
+          <p>${product.description}</p>
         </div>
-        <button class="add-to-cart" id="js-add-to-cart-${id}">Add to Cart</button>
+        <button class="add-to-cart" id="js-add-to-cart-${product.id}">
+          Add to Cart
+        </button>
       </div>
     </article>
- `;
-}
-function generateProducts(list = jacketProducts) {
-  refreshElement(productContainer);
+  `;
+	refreshElement(productContainer);
+	const newEl = htmlRenderToDom(template);
+	productContainer.append(newEl);
 
-  if (list.length === 0) {
-    console.error("No products available");
-    return;
-  }
-
-  // Select the first product or specify an ID
-  const product = list[0];
-
-  const template = productTemplate({
-    id: product.id,
-    title: product.title,
-    imgUrl: product.image.url,
-    imgAl: product.image.alt,
-    price: product.price,
-    description: product.description,
-  });
-
-  const newEl = htmlRenderToDom(template);
-  productContainer.append(newEl);
+	const addToCartBtn = document.getElementById(`js-add-to-cart-${product.id}`);
+	if (addToCartBtn) {
+		addToCartBtn.addEventListener('click', () => {
+			addToCart(product);
+		});
+	}
 }
 
-// Get elements
-const cartTab = document.getElementById("cartTab");
-const basketWrapper = document.querySelector(".basket-wrapper"); // New toggle button
-const closeButton = document.getElementById("close");
-
-// Function to toggle the cart
-function toggleCart() {
-    cartTab.classList.toggle("active"); // Adds/removes 'active' class
+function addToCart(product) {
+	let cart = JSON.parse(localStorage.getItem('cart')) || [];
+	const existingItem = cart.find(item => item.id === product.id);
+	if (existingItem) {
+		existingItem.quantity += 1;
+	} else {
+		cart.push({ ...product, quantity: 1 });
+	}
+	localStorage.setItem('cart', JSON.stringify(cart));
+	alert('Product added to cart!');
 }
-
-// Open cart when clicking the basket-wrapper
-basketWrapper.addEventListener("click", toggleCart);
-
-// Close cart when clicking the close button
-closeButton.addEventListener("click", toggleCart);

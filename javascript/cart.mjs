@@ -57,7 +57,6 @@ function attachQuantityChangeListeners() {
 			changeQuantity(event.target.closest('.cart-item'), -1);
 		});
 	});
-
 	document.querySelectorAll('.cart-item .plus').forEach(button => {
 		button.addEventListener('click', event => {
 			changeQuantity(event.target.closest('.cart-item'), 1);
@@ -69,7 +68,6 @@ function changeQuantity(cartItemElement, change) {
 	let cart = getCart();
 	const id = cartItemElement.dataset.id;
 	const item = cart.find(product => product.id === id);
-
 	if (item) {
 		item.quantity += change;
 		if (item.quantity <= 0) {
@@ -80,6 +78,18 @@ function changeQuantity(cartItemElement, change) {
 	}
 }
 
+
+function clearCart() {
+	localStorage.removeItem('cart');
+	updateCartUI();
+	console.log('Cart has been cleared.');
+}
+
+
+const clearCartButton = document.getElementById('clearCart');
+if (clearCartButton) {
+	clearCartButton.addEventListener('click', clearCart);
+}
 
 const cartTab = document.getElementById('cartTab');
 const basketWrapper = document.querySelector('.basket-wrapper');
@@ -92,6 +102,5 @@ function toggleCart() {
 
 if (basketWrapper) basketWrapper.addEventListener('click', toggleCart);
 if (closeButton) closeButton.addEventListener('click', toggleCart);
-
 
 document.addEventListener('DOMContentLoaded', updateCartUI);

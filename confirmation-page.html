@@ -64,25 +64,29 @@
         </nav>
 
     </div>
-    <main>
-        <div class="container confirmation-container">
-            <h2>Order Confirmation</h2>
-            <p>Thank you for your order!</p>
+<main>
+    <div class="container confirmation-container">
+        <h2>Order Confirmation</h2>
+        <p>Thank you for your order!</p>
 
-            <div class="order-details">
-                <h3>Your Order Details</h3>
-                <p><strong>Full Name:</strong> <span id="order-name"></span></p>
-                <p><strong>Email:</strong> <span id="order-email"></span></p>
-                <p><strong>Shipping Address:</strong> <span id="order-address"></span></p>
-                <p><strong>Payment Method:</strong> <span id="order-payment"></span></p>
-            </div>
-
-            <div class="order-summary">
-                <p><strong>Total: </strong> <span id="order-total"></span></p>
-            </div>
+        <div class="order-details">
+            <h3>Your Order Details</h3>
+            <p><strong>Full Name:</strong> <span id="order-name"></span></p>
+            <p><strong>Email:</strong> <span id="order-email"></span></p>
+            <p><strong>Shipping Address:</strong> <span id="order-address"></span></p>
+            <p><strong>Payment Method:</strong> <span id="order-payment"></span></p>
         </div>
-    </main>
-    <a href="index.html" class="btn">Back to Home</a>
+
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="order-items"></div>
+            <p><strong>Total: </strong> <span id="order-total"></span></p>
+        </div>
+
+        <button onclick="window.location.href='index.html'">Return to Home</button>
+    </div>
+</main>
+
 
     <footer class="footer-container">
         <div class="footer-wrapper">
@@ -115,6 +119,43 @@
             </ul>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            
+            document.getElementById("order-name").textContent = localStorage.getItem("orderName") || "N/A";
+            document.getElementById("order-email").textContent = localStorage.getItem("orderEmail") || "N/A";
+            document.getElementById("order-address").textContent = localStorage.getItem("orderAddress") || "N/A";
+            document.getElementById("order-payment").textContent = localStorage.getItem("orderPayment") || "N/A";
+
+            
+            const orderItemsContainer = document.getElementById("order-items");
+            const orderTotalElement = document.getElementById("order-total");
+            const orderCart = JSON.parse(localStorage.getItem("orderCart")) || [];
+
+            let total = 0;
+            orderItemsContainer.innerHTML = "";
+
+            if (orderCart.length === 0) {
+                orderItemsContainer.innerHTML = "<p>No items in your order.</p>";
+                orderTotalElement.textContent = "0 kr";
+            } else {
+                orderCart.forEach(item => {
+                    total += item.price * item.quantity;
+                    const itemElement = document.createElement("p");
+                    itemElement.innerHTML = `${item.quantity} x ${item.title} - ${(item.price * item.quantity).toFixed(2)} kr`;
+                    orderItemsContainer.appendChild(itemElement);
+                });
+                orderTotalElement.textContent = `${total.toFixed(2)} kr`;
+            }
+
+            
+            localStorage.removeItem("orderName");
+            localStorage.removeItem("orderEmail");
+            localStorage.removeItem("orderAddress");
+            localStorage.removeItem("orderPayment");
+            localStorage.removeItem("orderCart");
+        });
+    </script>
     <script type="module" src="javascript/main.mjs"></script>
 </body>
 

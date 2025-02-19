@@ -1,4 +1,4 @@
-// product-page.mjs
+
 import { apiUrl, currency, ERROR_PRINT } from './library.mjs';
 import { updateCartUI } from './cart.mjs';
 
@@ -91,7 +91,24 @@ function addToCart(product) {
 	updateCartUI();
 }
 
-// Sorting dropdown event listener
+function attachProductLinkListeners() {
+	document.querySelectorAll('.product-link').forEach(link => {
+		link.addEventListener('click', event => {
+			event.preventDefault(); 
+			const productData = link.parentElement.getAttribute('data-product');
+			if (productData) {
+				console.log('Saving product to localStorage:', productData);
+				localStorage.setItem('selectedProduct', productData);
+			}
+			
+			window.location.href = 'single-product-page.html';
+		});
+	});
+}
+
+
+
+
 const sortDropdown = document.getElementById('sort-options');
 if (sortDropdown) {
 	sortDropdown.addEventListener('change', event => {
@@ -99,7 +116,7 @@ if (sortDropdown) {
 	});
 }
 
-// Fetch products and update the cart UI on page load
+
 document.addEventListener('DOMContentLoaded', () => {
 	fetchProducts('asc');
 	updateCartUI();

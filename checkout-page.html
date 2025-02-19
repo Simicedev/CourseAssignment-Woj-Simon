@@ -14,6 +14,7 @@
     <script type="module" defer src="javascript/product-page-men.mjs"></script>
     <script type="module" defer src="javascript/product-page-women.mjs"></script>
     <script type="module" defer src="javascript/product-page.mjs"></script>
+    <script type="module" defer src="javascript/checkout.mjs"></script>
 </head>
 
 <body>
@@ -70,7 +71,7 @@
     <div class="cart-container">
         <h2>Your Cart</h2>
         <div id="cart-items"></div>
-        <p><strong>Total:</strong> <span id="cart-total">$0.00</span></p>
+        <p><strong>Total:</strong> <span id="cart-total"></span></p>
 
         <h2>Checkout</h2>
         <form id="checkout-form" class="checkout-form" onsubmit="submitOrder(event)">

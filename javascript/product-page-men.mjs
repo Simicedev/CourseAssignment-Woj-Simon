@@ -18,14 +18,14 @@ async function fetchMenProducts(sortOrder = 'asc') {
 			throw new Error('No products found');
 		}
 
-		// Sort products by price
+	
 		const sortedProducts = products.sort((a, b) => {
 			const priceA = a?.price || 0;
 			const priceB = b?.price || 0;
 			return sortOrder === 'asc' ? priceA - priceB : priceB - priceA;
 		});
 
-		// Filter male products and build HTML with separate data attributes
+		
 		const menProductsHTML = sortedProducts
 			.filter(product => product.gender?.toLowerCase() === 'male')
 			.map(product => {
@@ -77,7 +77,7 @@ function attachAddToCartListeners() {
 	console.log('Attaching event listeners to add-to-cart buttons, count:', buttons.length);
 	buttons.forEach(button => {
 		button.addEventListener('click', () => {
-			// Read product details from individual data attributes.
+			
 			const id = button.dataset.id;
 			const title = button.dataset.title;
 			const price = parseFloat(button.dataset.price);
@@ -101,13 +101,13 @@ function addToCart(product) {
 	updateCartUI();
 }
 
-// Listen for clicks on the "Men" navigation link.
+
 document.getElementById('men-products-nav').addEventListener('click', event => {
 	event.preventDefault();
 	fetchMenProducts();
 	const sortDropdown = document.getElementById('sort-options');
 	if (sortDropdown) {
-		// Use a one-time assignment to avoid duplicate listeners.
+		
 		sortDropdown.onchange = event => {
 			const sortOrder = event.target.value;
 			fetchMenProducts(sortOrder);
