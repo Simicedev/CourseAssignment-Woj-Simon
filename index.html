@@ -11,10 +11,6 @@
         content="outdoor jackets, hiking jackets, waterproof jackets, camping gear, all-weather jackets, raincoats, outdoor clothing">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/4dc294ecf0.js" crossorigin="anonymous"></script>
-    <script type="module" defer src="javascript/product-page-men.mjs"></script>
-    <script type="module" defer src="javascript/product-page-women.mjs"></script>
-    <script type="module" defer src="javascript/product-page.mjs"></script>
-    <script type="module" src="javascript/cart.mjs"></script>
 </head>
 
 <body>
@@ -26,7 +22,6 @@
                 <div></div>
                 <div></div>
             </div>
-            
             <div class="sab">
                 <div class="search-container">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -43,19 +38,15 @@
                 </div>
             </div>
         </header>
-
         <div class="search-wrapper">
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input class="input-search" type="text" placeholder="Search">
             </div>
         </div>
-
-
-
         <nav>
             <ul class="nav-bar" id="nav-bar">
-                <li id=""><a href="index.html">HOME</a></li>
+                <li><a href="index.html">HOME</a></li>
                 <li><a href="">NEW PRODUCT</a></li>
                 <li id="women-products-nav"><a href="#">WOMEN</a></li>
                 <li id="men-products-nav"><a href="#">MEN</a></li>
@@ -63,9 +54,7 @@
                 <li><a href="">ACCESSORIES</a></li>
             </ul>
         </nav>
-
     </div>
-
 
     <main>
         <select id="sort-options">
@@ -74,17 +63,20 @@
         </select>
         <div id="product-container"></div>
     </main>
+
     <section>
         <div id="cartTab">
             <h1 id="cartTitle">Shopping cart</h1>
-            <div id="listCart"></div>
+            
+            <div id="cart-items"></div>
+            <div id="total-price"></div>
             <div id="btn">
                 <button id="close">CLOSE</button>
-                <button id="checkOut"> <a href="checkout-page.html"> CHECKOUT</a></button>
+                <button id="checkOut"><a href="checkout-page.html">CHECKOUT</a></button>
             </div>
         </div>
     </section>
-    
+
     <footer class="footer-container">
         <div class="footer-wrapper">
             <h3 class="footer-h">COMPANY</h3>
@@ -95,7 +87,6 @@
                 <li><a href="#">Privacy policy</a></li>
             </ul>
         </div>
-
         <div class="footer-wrapper">
             <h3 class="footer-h">Help and support</h3>
             <ul class="footer">
@@ -103,20 +94,24 @@
                 <li><a href="#">Shipping</a></li>
                 <li><a href="#">Returns</a></li>
                 <li><a href="#">Status</a></li>
-                <li><a href="">Payment</a></li>
+                <li><a href="#">Payment</a></li>
             </ul>
         </div>
-
         <div class="footer-wrapper">
             <h3 class="footer-h">Follow us</h3>
             <ul class="footer">
-                <li><a href="">Facebook</a></li>
-                <li><a href="">Instagram</a></li>
-                <li><a href="">X</a></li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Instagram</a></li>
+                <li><a href="#">X</a></li>
             </ul>
         </div>
     </footer>
 
+    
+    <script type="module" src="javascript/product-page.mjs"></script>
+    <script type="module" src="javascript/product-page-women.mjs"></script>
+    <script type="module" src="javascript/product-page-men.mjs"></script>
+    <script type="module" src="javascript/cart.mjs"></script>
 </body>
 
 </html>
