@@ -9,7 +9,7 @@ function saveCart(cart) {
 }
 
 // Function to update the cart badge (item count)
-function updateCartBadge() {
+export function updateCartBadge() {
   const cart = getCart();
   const cartBadge = document.getElementById("cart-badge");
 

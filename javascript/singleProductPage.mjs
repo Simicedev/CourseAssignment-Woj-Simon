@@ -6,6 +6,8 @@ import {
   apiUrl,
 } from "./library.mjs";
 
+import { updateCartUI } from "./cart.mjs";
+
 let jacketProducts = [];
 const productContainer = document.getElementById("product-container");
 
@@ -57,7 +59,7 @@ function productTemplate({
         <div class="product-description">
           <p>${description}</p>
         </div>
-        <button class="add-to-cart" id="js-add-to-cart-${id}">
+        <button data-id="add-to-cart" class="add-to-cart" id="js-add-to-cart-${id}">
           Add to Cart
         </button>
       </div>
@@ -74,6 +76,8 @@ function generateProducts(list = jacketProducts) {
 
   // Select the first product or specify an ID
   const product = list[0];
+  // const selectedProductID = "";
+  // const product = list.find(i => i.id === selectedProductID)
 
   const template = productTemplate({
     id: product.id,
@@ -85,6 +89,11 @@ function generateProducts(list = jacketProducts) {
   });
 
   const newEl = htmlRenderToDom(template);
+
+  newEl
+    .querySelector("button[data-id]")
+    .addEventListener("click", () => addToCart(product));
+
   productContainer.append(newEl);
 }
 
@@ -98,4 +107,5 @@ function addToCart(product) {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
   alert("Product added to cart!");
+  updateCartUI();
 }
