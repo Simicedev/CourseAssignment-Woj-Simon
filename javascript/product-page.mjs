@@ -61,7 +61,7 @@ async function fetchProducts(sortOrder = 'asc') {
 	}
 }
 
-function attachAddToCartListeners() {
+export function attachAddToCartListeners() {
 	document.querySelectorAll('.add-to-cart').forEach(button => {
 		button.addEventListener('click', event => {
 			const productElement = event.target.closest('.product');
