@@ -18,6 +18,7 @@
       crossorigin="anonymous"
     ></script>
   </head>
+
   <body>
     <div class="hn">
       <header>
@@ -27,7 +28,7 @@
           <div></div>
           <div></div>
         </div>
-        <div class="logo"></div>
+
         <div class="sab">
           <div class="search-container">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -40,7 +41,8 @@
           </div>
           <div class="basket-wrapper">
             <i class="fa-solid fa-basket-shopping"></i>
-            <div id="cart">Cart</div>
+            <span id="cart-badge" class="cart-badge">0</span>
+            <div class="cart">Cart</div>
           </div>
         </div>
       </header>
@@ -54,7 +56,7 @@
 
       <nav>
         <ul class="nav-bar" id="nav-bar">
-          <li id=""><a href="index.html">HOME</a></li>
+          <li><a href="index.html">HOME</a></li>
           <li><a href="">NEW PRODUCT</a></li>
           <li id="women-products-nav"><a href="#">WOMEN</a></li>
           <li id="men-products-nav"><a href="#">MEN</a></li>
@@ -63,21 +65,24 @@
         </ul>
       </nav>
     </div>
+
+    <div id="product-container"></div>
     <section>
-        <div id="productContainer"></div>
-        
+      <div id="cartTab">
+        <h1 id="cartTitle">Shopping cart</h1>
+
+        <div id="cart-items"></div>
+        <div id="total-price"></div>
+        <div id="btn">
+          <button id="close">CLOSE</button>
+          <button id="clearCart">CLEAR CART</button>
+          <button id="checkOut">
+            <a href="checkout-page.html">CHECKOUT</a>
+          </button>
         </div>
+      </div>
     </section>
-    <section>
-        <div id="cartTab">
-            <h1 id="cartTitle">Shopping cart</h1>
-            <div id="listCart"></div>
-            <div id="btn">
-                <button id="close">CLOSE</button>
-                <button id="checkOut">CHECK OUT</button>
-            </div>
-        </div>
-    </section>
+
     <footer class="footer-container">
       <div class="footer-wrapper">
         <h3 class="footer-h">COMPANY</h3>
@@ -88,7 +93,6 @@
           <li><a href="#">Privacy policy</a></li>
         </ul>
       </div>
-
       <div class="footer-wrapper">
         <h3 class="footer-h">Help and support</h3>
         <ul class="footer">
@@ -99,7 +103,6 @@
           <li><a href="">Payment</a></li>
         </ul>
       </div>
-
       <div class="footer-wrapper">
         <h3 class="footer-h">Follow us</h3>
         <ul class="footer">
@@ -109,6 +112,10 @@
         </ul>
       </div>
     </footer>
+
     <script type="module" src="javascript/singleProductPage.mjs"></script>
+    <script type="module" src="javascript/cart.mjs"></script>
+    <script type="module" src="javascript/product-page-women.mjs"></script>
+    <script type="module" src="javascript/product-page-men.mjs"></script>
   </body>
 </html>
